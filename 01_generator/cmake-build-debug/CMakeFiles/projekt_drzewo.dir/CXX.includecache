@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/eitowiec/Desktop/01_eit_1_sem_mgr/04_NkwRWZMWIO/projekt_drzewo/01_generator/main.cpp
+iostream
+-
+cstdlib
+-
+ctime
+-
+string.h
+-
+fstream
+-
+
