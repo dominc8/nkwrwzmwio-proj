@@ -1,3 +1,0 @@
-"C:\Program Files\JetBrains\CLion 2019.2.3\bin\cmake\win\bin\cmake.exe" -E remove -f CMakeFiles\projekt_drzewo.dir/objects.a
-C:\MinGW\bin\ar.exe cr CMakeFiles\projekt_drzewo.dir/objects.a @CMakeFiles\projekt_drzewo.dir\objects1.rsp
-C:\MinGW\bin\g++.exe -g   -Wl,--whole-archive CMakeFiles\projekt_drzewo.dir/objects.a -Wl,--no-whole-archive  -o projekt_drzewo.exe -Wl,--out-implib,libprojekt_drzewo.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\projekt_drzewo.dir\linklibs.rsp
