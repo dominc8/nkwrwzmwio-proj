@@ -1,18 +1,17 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include <iostream>
 #include <cstring>
 #include <fstream>
 #include <vector>
+#include <string>
 
 using namespace std;
 
-string file_path = ".\\02_sample_data\\10Neighbours_30PercentRed\\tree_10neigh_v0.txt";
+string file_path = "./02_sample_data/10Neighbours_30PercentRed/tree_10neigh_v0.txt";
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-bool does_file_exist(string user_file_path)
+bool does_file_exist(const string &user_file_path)
 {
 	string line;
 
