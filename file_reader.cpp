@@ -8,20 +8,21 @@
 
 using namespace std;
 
-string file_path = "./02_sample_data/10Neighbours_30PercentRed/tree_10neigh_v0.txt";
+string file_path;
+string default_file_path = "./02_sample_data/10Neighbours_30PercentRed/tree_10neigh_v0.txt";
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-bool does_file_exist(string &user_file_path)
+bool does_file_exist(const string &user_file_path)
 {
 	string line;
 
 	/* User used default */
-
 	if (user_file_path == "default")
 	{
 		cout << "User didn't provide any path.\n";
-		cout << "Using default path: " << file_path << '\n';
+		cout << "Using default path: " << default_file_path << '\n';
+		file_path = default_file_path;
 	}
 	else
 	{
@@ -111,10 +112,10 @@ bool allocate_space_for_graph(struct square_graph *graph)
 {
 	graph->nodes_matrix = new (nothrow) uint8_t [graph->size * graph ->size];
 
-	memset(graph->nodes_matrix, 0, graph->size * graph->size * sizeof(uint8_t));
-
 	if(graph->nodes_matrix == NULL) 
 		return false;
+
+	memset(graph->nodes_matrix, 0, graph->size * graph->size * sizeof(uint8_t));
 
 	return true;
 }
@@ -154,11 +155,13 @@ bool get_size_of_matrix(struct square_graph *graph)
 	/* Get first line, and check matrix size*/
 	getline(file_stream, tmp);
 
+	uint8_t last_element_index = max(tmp.find_last_of('0'), tmp.find_last_of('1'));
+
 	/* Set right size of matrix */
-	if (tmp.find_last_of('0') == std::string::npos)
+	if (last_element_index == std::string::npos)
 		return false;
 
-	graph->size = tmp.find_last_of('0')/3 + 1;
+	graph->size = last_element_index/3 + 1;
 
 	return true;
 }

@@ -7,7 +7,7 @@
 
 using namespace std;
 
-bool read_data_form_file(struct square_graph *main_graph)
+bool read_data_from_file(struct square_graph *main_graph)
 {
 	string user_file_path;
 
@@ -51,7 +51,7 @@ int main(int argc, char const *argv[])
 {
 	struct square_graph main_graph;
 
-	if (!read_data_form_file(&main_graph))
+	if (!read_data_from_file(&main_graph))
 		return 0;
 
 	print_graph( &main_graph);
