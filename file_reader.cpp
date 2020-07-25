@@ -1,10 +1,25 @@
 #include <iostream>
+#include <cstdio>
+#include <cstdlib>
 #include <cstring>
 #include <fstream>
 #include <string>
 #include <stdint.h>
 #include <algorithm>
 #include "file_reader.h"
+
+uint8_t& square_graph::operator()(uint16_t index)
+{
+    assert(index < size*size);
+    return nodes_matrix[index];
+}
+
+uint8_t& square_graph::operator()(uint16_t y, uint16_t x)
+{
+    assert(y*size + x < size*size);
+    return nodes_matrix[y*size + x];
+}
+
 
 using namespace std;
 
@@ -13,20 +28,29 @@ static string default_file_path = "./02_sample_data/10Neighbours_30PercentRed/tr
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-bool read_data_from_file(square_graph *main_graph)
+bool read_data_from_file(square_graph *main_graph, const char* arg)
 {
     string user_file_path;
 
-    /* Get filepath from user and check if it exists */
-    while(1)
+    if (arg != nullptr && !does_file_exist(arg))
     {
-        std::cout << "Please provide path to your input file:" << endl;
-        std::cout << "(To provide default file path please type 'default')" << endl;
+        arg = nullptr;
+    }
 
-        std::cin >> user_file_path;
 
-        if (does_file_exist(user_file_path)) 
-            break;
+    if (arg == nullptr)
+    {
+        /* Get filepath from user and check if it exists */
+        while(1)
+        {
+            std::cout << "Please provide path to your input file:" << endl;
+            std::cout << "(To provide default file path please type 'default')" << endl;
+
+            std::cin >> user_file_path;
+
+            if (does_file_exist(user_file_path)) 
+                break;
+        }
     }
 
     if (!get_size_of_matrix(main_graph))
@@ -43,7 +67,7 @@ bool read_data_from_file(square_graph *main_graph)
 
     if (!get_graph_from_file(main_graph))
     {
-        cout << "Getting data form file failed!" << endl;
+        cout << "Getting data from file failed!" << endl;
         return false;
     }
 
@@ -202,13 +226,13 @@ bool get_size_of_matrix(square_graph *graph)
     /* Get first line, and check matrix size*/
     getline(file_stream, tmp);
 
-    uint8_t last_element_index = max(tmp.find_last_of('0'), tmp.find_last_of('1'));
+    uint32_t last_element_index = max(tmp.find_last_of('0'), tmp.find_last_of('1'));
 
     /* Set right size of matrix */
     if (last_element_index == std::string::npos)
         return false;
 
-    graph->size = last_element_index/3 + 1;
+    graph->size = (uint16_t)(last_element_index/3 + 1);
 
     return true;
 }

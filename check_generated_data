@@ -1,0 +1,2 @@
+#/bin/zsh
+find ./ -name "tree*.txt" -exec echo "{}" \; -exec ./main {} \; &>> log
