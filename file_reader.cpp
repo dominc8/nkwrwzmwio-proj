@@ -118,7 +118,7 @@ bool get_graph_from_file(square_graph *graph)
 
         while (one_index != std::string::npos)
         {
-            graph->nodes_matrix[graph->size * i + one_index] = 0x01;
+            (*graph)(i, one_index) = 0x01;
             one_index = tmp.find_first_of('1', one_index + 1);
         }
 
@@ -140,9 +140,9 @@ bool get_graph_from_file(square_graph *graph)
             int neighbour_index = number - '0';
             for (int i = 0; i < graph->size; ++i)
             {
-                if (graph->nodes_matrix[i*graph->size + neighbour_index] == 0x01)
+                if ((*graph)(i, neighbour_index) == 0x01)
                 {
-                    graph->nodes_matrix[i*graph->size + neighbour_index] = 0x81;
+                    (*graph)(i, neighbour_index) = 0x81;
                 }
             }
         } 
@@ -177,7 +177,7 @@ void print_graph(square_graph *graph)
     {
         for (int j = 0; j < graph->size; ++j)
         {
-            cout << (int)graph->nodes_matrix[graph->size * i + j] << " ";
+            cout << (int)(*graph)(i, j) << " ";
         }
 
         cout << endl;

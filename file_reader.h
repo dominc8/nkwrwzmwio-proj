@@ -1,9 +1,25 @@
+#include <cstdint>
+#include <cassert>
 #include <string>
 
 struct square_graph
 {
     uint8_t *nodes_matrix;
     uint16_t size = 0;
+
+    uint8_t& operator()(uint16_t index)
+    {
+        assert(index < size*size);
+        return nodes_matrix[index];
+    }
+
+    uint8_t& operator()(uint16_t y, uint16_t x)
+    {
+        assert(y*size + x < size*size);
+        return nodes_matrix[y*size + x];
+    }
+
+
 };
 
 bool read_data_from_file(square_graph *main_graph);
