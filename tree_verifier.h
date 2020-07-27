@@ -1,8 +1,7 @@
 #ifndef TREE_VERIFIER_H
 #define TREE_VERIFIER_H
 
-/* Forward declaration */
-struct square_graph;
+#include "file_reader.h"
 
 bool verify_tree_paths(square_graph *graph);
 

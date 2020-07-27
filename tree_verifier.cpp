@@ -1,5 +1,4 @@
 #include "tree_verifier.h"
-#include "file_reader.h"
 #include <cstdint>
 
 static bool verify_tree_path(square_graph *graph, uint16_t index, bool red_already_met);
