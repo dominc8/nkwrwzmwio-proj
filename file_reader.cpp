@@ -153,7 +153,9 @@ bool get_graph_from_file(square_graph *graph)
     getline(file_stream, tmp);
 
     tmp.erase(remove(tmp.begin(), tmp.end(), ' '), tmp.end());
+#ifndef NDEBUG
     cout << tmp << endl;
+#endif
 
     for(int k = 0; k < tmp.length() - 1; ++k)
     {
@@ -226,7 +228,7 @@ bool get_size_of_matrix(square_graph *graph)
     /* Get first line, and check matrix size*/
     getline(file_stream, tmp);
 
-    uint32_t last_element_index = max(tmp.find_last_of('0'), tmp.find_last_of('1'));
+    size_t last_element_index = max(tmp.find_last_of('0'), tmp.find_last_of('1'));
 
     /* Set right size of matrix */
     if (last_element_index == std::string::npos)

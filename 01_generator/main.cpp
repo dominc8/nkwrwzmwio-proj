@@ -193,16 +193,17 @@ void Tree::GenerateRandomNumber(int percent_neighbour) {
 int main() {
 
     int count_data = 10;
-    Tree tree(100, 10);
+    Tree tree(10000, 1000);
     string name_file;
     while(count_data--){
         tree.CreateTree();
         tree.GenerateRandomNumber(30);
 
-        name_file = "tree_" + to_string(100) + "neigh_v" + to_string(count_data) + ".txt";
+        name_file = "tree_" + to_string(10000) + "neigh_v" + to_string(count_data) + ".txt";
         tree.SaveTreeAndRandomNode(name_file);
     }
 
     cout << "End job" << endl;
     return 0;
 }
+

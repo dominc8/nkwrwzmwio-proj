@@ -19,7 +19,9 @@ int main(int argc, char const *argv[])
         return -1;
     }
 
+#ifndef NDEBUG
     print_graph(&main_graph);
+#endif
 
     if (verify_tree_paths(&main_graph) == true)
     {
