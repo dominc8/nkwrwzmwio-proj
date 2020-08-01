@@ -43,10 +43,10 @@ bool read_data_from_file(square_graph *main_graph, const char* arg)
         /* Get filepath from user and check if it exists */
         while(1)
         {
-            std::cout << "Please provide path to your input file:" << endl;
-            std::cout << "(To provide default file path please type 'default')" << endl;
+            cout << "Please provide path to your input file:" << endl;
+            cout << "(To provide default file path please type 'default')" << endl;
 
-            std::cin >> user_file_path;
+            cin >> user_file_path;
 
             if (does_file_exist(user_file_path)) 
                 break;
@@ -140,7 +140,7 @@ bool get_graph_from_file(square_graph *graph)
 
         size_t one_index = tmp.find_first_of('1');
 
-        while (one_index != std::string::npos)
+        while (one_index != string::npos)
         {
             (*graph)(i, one_index) = 0x01;
             one_index = tmp.find_first_of('1', one_index + 1);
@@ -231,7 +231,7 @@ bool get_size_of_matrix(square_graph *graph)
     size_t last_element_index = max(tmp.find_last_of('0'), tmp.find_last_of('1'));
 
     /* Set right size of matrix */
-    if (last_element_index == std::string::npos)
+    if (last_element_index == string::npos)
         return false;
 
     graph->size = (uint16_t)(last_element_index/3 + 1);

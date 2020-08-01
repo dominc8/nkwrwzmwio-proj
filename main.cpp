@@ -23,7 +23,7 @@ int main(int argc, char const *argv[])
     print_graph(&main_graph);
 #endif
 
-    if (verify_tree_paths(&main_graph) == true)
+    if (verify_tree(&main_graph) == true)
     {
         printf("Tree paths are good!\n");
     }
