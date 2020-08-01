@@ -1,0 +1,10 @@
+#/bin/sh
+mkdir -p log
+rm -f 'log/{massif,memcheck}*'
+find . -type f -name "tree*.txt" -print0 | while IFS= read -r -d $'\0' file; do
+    logfile="massif-${file##*/}"
+    valgrind --tool=massif --stacks=yes --massif-out-file="log/$logfile" ./main "$file"
+    logfile="memcheck-${file##*/}"
+    valgrind --tool=memcheck --log-file="log/$logfile" ./main "$file"
+done
+

@@ -1,0 +1,3 @@
+#/bin/sh
+find ./ -name "tree*.txt" -exec echo "{}" \; -exec ./main {} \; >> log 2>&1
+
