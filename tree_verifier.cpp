@@ -35,7 +35,7 @@ static bool verify_tree_path(square_graph *graph, uint16_t node_index, bool red_
             }
             else
             {
-                ret_val = ret_val && verify_tree_path(graph, i, false);
+                ret_val = ret_val && verify_tree_path(graph, i, red_already_met);
             }
         }
     }

@@ -154,26 +154,30 @@ bool get_graph_from_file(square_graph *graph)
 
     tmp.erase(remove(tmp.begin(), tmp.end(), ' '), tmp.end());
 #ifndef NDEBUG
-    cout << tmp << endl;
+    cout << "Red vertices: " << tmp << endl;
 #endif
 
-    for(int k = 0; k < tmp.length() - 1; ++k)
+    int start_index = 0;
+
+    for (int k = 0; k < tmp.length(); ++k) 
     {
         char number = tmp[k];
 
-        if(number != ',')
+        if (number == ',')
         {
-            int neighbour_index = number - '0';
+            int neighbour_index = std::strtol(tmp.c_str() + start_index, nullptr, 0);
+
             for (int i = 0; i < graph->size; ++i)
             {
                 if ((*graph)(i, neighbour_index) == 0x01)
                 {
-                    (*graph)(i, neighbour_index) = 0x81;
+                    (*graph)(i, neighbour_index) = 0x81;        
                 }
             }
-        } 
-    }
 
+            start_index = k + 1;
+        }
+    }
     return true;
 } 
 
@@ -196,7 +200,7 @@ bool allocate_space_for_graph(square_graph *graph)
 void print_graph(square_graph *graph)
 {
     /* Printing graph matrix */
-    cout << graph->size << endl;
+    cout << "Number of vertices: " << graph->size << endl;
     cout << "Graph matrix:" << endl;
 
     for (int i = 0; i < graph->size; ++i)

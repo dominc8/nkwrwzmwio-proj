@@ -176,7 +176,7 @@ void Tree::GenerateRandomNumber(int percent_neighbour) {
         red_neigbour = (int*)malloc(number_red_neighbour*sizeof(int));
 
         for(int i=0;i<number_red_neighbour;++i){
-            red_neigbour[i] = rand()%number_neighbors;
+            red_neigbour[i] = rand()%(number_neighbors - 1) + 1;
             //check repeat
             for(int j=0;j<i;++j){
                 if(red_neigbour[i] == red_neigbour[j]){
